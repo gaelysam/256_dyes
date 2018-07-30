@@ -40,7 +40,7 @@ minetest.register_craftitem("256_dyes:dye", {
 	groups = {},
 	inventory_image = "256_dyes_dye.png",
 	wield_image = "256_dyes_dye.png",
-	palette = "256_dyes_palette_2.png",
+	palette = "256_dyes_palette.png",
 	stack_max = 99,
 	color = "#400000",
 	on_use = change_variation,
