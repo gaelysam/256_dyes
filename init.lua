@@ -1,5 +1,10 @@
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
+local function set_color(meta, color)
+	meta:set_int("palette_index", color)
+	meta:set_string("description", "Dye (color #" .. color .. ")")
+end
+
 local function change_variation(itemstack)
 	local meta = itemstack:get_meta()
 	local color = meta:get_int("palette_index")
@@ -16,7 +21,7 @@ local function change_variation(itemstack)
 		local hue = color - variation
 		new_color = (variation+1) % 10 + hue
 	end
-	meta:set_int("palette_index", new_color)
+	set_color(meta, new_color)
 	return itemstack
 end
 
@@ -31,7 +36,7 @@ local function change_hue(itemstack)
 			new_color = math.max(color + 1, 240)
 		end
 	end
-	meta:set_int("palette_index", new_color)
+	set_color(meta, new_color)
 	return itemstack
 end
 
@@ -124,7 +129,7 @@ local function dye_craft(itemstack, player, old_craft_grid, craft_inv)
 	itemstack = ItemStack("256_dyes:dye " .. #list_colors)
 	local new_color = mix(unpack(list_colors))
 	local meta = itemstack:get_meta()
-	meta:set_int("palette_index", new_color)
+	set_color(meta, new_color)
 	return itemstack
 end
 
